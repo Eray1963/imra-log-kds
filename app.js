@@ -3,15 +3,18 @@ const path = require('path');
 const app = express();
 require('dotenv').config();
 const cors = require('cors');
-const db = require('./db/mysql_connect'); // DB bağlantısını test için ekle
+const db = require('./config/db'); // DB bağlantısı
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 const port = process.env.PORT || 3001;
-const router = require('./routers');
-app.use('/api', router);
+
+// Routes
+app.use('/api', require('./routes/vehicles'));
+app.use('/api', require('./routes/stocks'));
+app.use('/api', require('./routes/warehouses'));
 
 // Geçici test endpoint
 app.get('/test', (req, res) => {

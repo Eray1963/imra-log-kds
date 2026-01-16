@@ -1,7 +1,6 @@
 const Vehicle = require('../models/Vehicle');
 
 class VehicleController {
-    // GET /api/vehicles
     async getAllVehicles(req, res) {
         try {
             const vehicles = await Vehicle.findAll();
@@ -11,7 +10,6 @@ class VehicleController {
         }
     }
 
-    // GET /api/vehicles/:id
     async getVehicleById(req, res) {
         try {
             const { id } = req.params;
@@ -25,7 +23,6 @@ class VehicleController {
         }
     }
 
-    // POST /api/vehicles
     async createVehicle(req, res) {
         try {
             const vehicleData = req.body;
@@ -36,21 +33,10 @@ class VehicleController {
         }
     }
 
-    // PUT /api/vehicles/:id
     async updateVehicle(req, res) {
         try {
             const { id } = req.params;
             const vehicleData = req.body;
-
-            // İş kuralı: Bakımda olan araç görevlendirilemez / güncellenemez
-            const existingVehicle = await Vehicle.findById(id);
-            if (!existingVehicle) {
-                return res.status(404).json({ error: 'Araç bulunamadı' });
-            }
-            if (existingVehicle.status === 'maintenance') {
-                return res.status(400).json({ error: 'Bakımda olan araç güncellenemez' });
-            }
-
             const success = await Vehicle.update(id, vehicleData);
             if (!success) {
                 return res.status(404).json({ error: 'Araç güncellenemedi' });
@@ -61,7 +47,6 @@ class VehicleController {
         }
     }
 
-    // DELETE /api/vehicles/:id
     async deleteVehicle(req, res) {
         try {
             const { id } = req.params;
