@@ -82,4 +82,5 @@ Depolar,GET,/api/warehouses,Depo doluluk oranlarını gör
 
 /config: Veritabanı bağlantı yapılandırması.
 
-/db: SQL şemaları (init.sql).
+/db: SQL şemaları (init.sql)....
+
