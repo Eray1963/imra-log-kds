@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMRA Lojistik KDS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>IMRA Lojistik Karar Destek Sistemi (KDS)</h1>
+    <p>Backend API'lerini test edin:</p>
+
+    <h2>Test Endpoint</h2>
+    <button onclick="testAPI()">Test /test</button>
+    <pre id="testResult"></pre>
+
+    <h2>Vehicles</h2>
+    <button onclick="getVehicles()">Get All Vehicles</button>
+    <pre id="vehiclesResult"></pre>
+
+    <h2>Stocks</h2>
+    <button onclick="getStocks()">Get All Stocks</button>
+    <pre id="stocksResult"></pre>
+
+    <h2>Warehouses</h2>
+    <button onclick="getWarehouses()">Get All Warehouses</button>
+    <pre id="warehousesResult"></pre>
+
+    <script>
+        async function fetchAPI(url, elementId) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                document.getElementById(elementId).textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById(elementId).textContent = 'Hata: ' + error.message;
+            }
+        }
+
+        function testAPI() {
+            fetchAPI('/test', 'testResult');
+        }
+
+        function getVehicles() {
+            fetchAPI('/api/vehicles', 'vehiclesResult');
+        }
+
+        function getStocks() {
+            fetchAPI('/api/stocks', 'stocksResult');
+        }
+
+        function getWarehouses() {
+            fetchAPI('/api/warehouses', 'warehousesResult');
+        }
+    </script>
+</body>
+</html>

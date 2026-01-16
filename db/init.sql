@@ -1,6 +1,6 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS imra_kds;
-USE imra_kds;
+CREATE DATABASE IF NOT EXISTS lojistik_kds;
+USE lojistik_kds;
 
 -- Vehicles table
 CREATE TABLE IF NOT EXISTS vehicles (
