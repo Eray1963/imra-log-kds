@@ -4,9 +4,9 @@ class VehicleController {
     async getAllVehicles(req, res) {
         try {
             const vehicles = await Vehicle.findAll();
-            res.status(200).json(vehicles);
+            res.json(vehicles);
         } catch (error) {
-            res.status(500).json({ error: 'Sunucu hatası' });
+            res.status(500).json({ error: error.message });
         }
     }
 
@@ -15,48 +15,40 @@ class VehicleController {
             const { id } = req.params;
             const vehicle = await Vehicle.findById(id);
             if (!vehicle) {
-                return res.status(404).json({ error: 'Araç bulunamadı' });
+                return res.status(404).json({ error: 'Vehicle not found' });
             }
-            res.status(200).json(vehicle);
+            res.json(vehicle);
         } catch (error) {
-            res.status(500).json({ error: 'Sunucu hatası' });
+            res.status(500).json({ error: error.message });
         }
     }
 
     async createVehicle(req, res) {
         try {
-            const vehicleData = req.body;
-            const id = await Vehicle.create(vehicleData);
-            res.status(201).json({ message: 'Araç oluşturuldu', id });
+            const id = await Vehicle.create(req.body);
+            res.status(201).json({ id });
         } catch (error) {
-            res.status(500).json({ error: 'Sunucu hatası' });
+            res.status(500).json({ error: error.message });
         }
     }
 
     async updateVehicle(req, res) {
         try {
             const { id } = req.params;
-            const vehicleData = req.body;
-            const success = await Vehicle.update(id, vehicleData);
-            if (!success) {
-                return res.status(404).json({ error: 'Araç güncellenemedi' });
-            }
-            res.status(200).json({ message: 'Araç güncellendi' });
+            await Vehicle.update(id, req.body);
+            res.json({ message: 'Vehicle updated successfully' });
         } catch (error) {
-            res.status(500).json({ error: 'Sunucu hatası' });
+            res.status(500).json({ error: error.message });
         }
     }
 
     async deleteVehicle(req, res) {
         try {
             const { id } = req.params;
-            const success = await Vehicle.delete(id);
-            if (!success) {
-                return res.status(404).json({ error: 'Araç bulunamadı' });
-            }
-            res.status(200).json({ message: 'Araç silindi' });
+            await Vehicle.remove(id);
+            res.json({ message: 'Vehicle deleted successfully' });
         } catch (error) {
-            res.status(500).json({ error: 'Sunucu hatası' });
+            res.status(500).json({ error: error.message });
         }
     }
 }

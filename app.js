@@ -1,36 +1,29 @@
 const express = require('express');
 const path = require('path');
-const app = express();
-require('dotenv').config();
 const cors = require('cors');
-const db = require('./config/db'); // DB bağlantısı
+const db = require('./src/config/db');
+const vehicleRoutes = require('./src/routes/vehicleRoutes');
+const sparePartRoutes = require('./src/routes/sparePartRoutes');
+const warehouseRoutes = require('./src/routes/warehouseRoutes');
+
+const app = express();
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
-const port = process.env.PORT || 3001;
+app.use('/api', vehicleRoutes);
+app.use('/api', sparePartRoutes);
+app.use('/api', warehouseRoutes);
 
-// Routes
-app.use('/api', require('./routes/vehicles'));
-app.use('/api', require('./routes/stocks'));
-app.use('/api', require('./routes/warehouses'));
-
-// Geçici test endpoint
-app.get('/test', (req, res) => {
-    res.status(200).json({ message: 'OK' });
-});
-
-// DB bağlantısını test et, hata varsa server düşürme
+// DB bağlantısını test et
 (async () => {
     try {
         await db.query('SELECT 1');
-        console.log('MySQL bağlantısı başarılı.');
+        console.log('MySQL connected');
     } catch (error) {
-        console.log('MySQL bağlantı hatası:', error.message, '- Mock veri kullanılacak.');
+        console.error('MySQL connection error:', error.message);
     }
 })();
 
-app.listen(port, () => {
-    console.log(`Sunucu port ${port} üzerinde çalışıyor...`);
-});
+module.exports = app;

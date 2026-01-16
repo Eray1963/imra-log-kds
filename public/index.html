@@ -15,17 +15,13 @@
     <h1>IMRA Lojistik Karar Destek Sistemi (KDS)</h1>
     <p>Backend API'lerini test edin:</p>
 
-    <h2>Test Endpoint</h2>
-    <button onclick="testAPI()">Test /test</button>
-    <pre id="testResult"></pre>
-
     <h2>Vehicles</h2>
     <button onclick="getVehicles()">Get All Vehicles</button>
     <pre id="vehiclesResult"></pre>
 
-    <h2>Stocks</h2>
-    <button onclick="getStocks()">Get All Stocks</button>
-    <pre id="stocksResult"></pre>
+    <h2>Spare Parts</h2>
+    <button onclick="getSpareParts()">Get All Spare Parts</button>
+    <pre id="sparePartsResult"></pre>
 
     <h2>Warehouses</h2>
     <button onclick="getWarehouses()">Get All Warehouses</button>
@@ -42,16 +38,22 @@
             }
         }
 
-        function testAPI() {
-            fetchAPI('/test', 'testResult');
-        }
-
         function getVehicles() {
             fetchAPI('/api/vehicles', 'vehiclesResult');
         }
 
-        function getStocks() {
-            fetchAPI('/api/stocks', 'stocksResult');
+        function getSpareParts() {
+            fetchAPI('/api/spare-parts', 'sparePartsResult');
+        }
+
+        function getWarehouses() {
+            fetchAPI('/api/warehouses', 'warehousesResult');
+        }
+    </script>
+        }
+
+        function getSpareParts() {
+            fetchAPI('/api/spare-parts', 'sparePartsResult');
         }
 
         function getWarehouses() {

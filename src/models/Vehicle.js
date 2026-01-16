@@ -8,30 +8,28 @@ class Vehicle {
 
     static async findById(id) {
         const [rows] = await db.query('SELECT * FROM vehicles WHERE id = ?', [id]);
-        return rows[0] || null;
+        return rows[0];
     }
 
     static async create(data) {
-        const { plate, status, capacity } = data;
+        const { plate_number, driver_name, capacity, status } = data;
         const [result] = await db.query(
-            'INSERT INTO vehicles (plate, status, capacity) VALUES (?, ?, ?)',
-            [plate, status, capacity]
+            'INSERT INTO vehicles (plate_number, driver_name, capacity, status) VALUES (?, ?, ?, ?)',
+            [plate_number, driver_name, capacity, status]
         );
         return result.insertId;
     }
 
     static async update(id, data) {
-        const { plate, status, capacity } = data;
-        const [result] = await db.query(
-            'UPDATE vehicles SET plate = ?, status = ?, capacity = ? WHERE id = ?',
-            [plate, status, capacity, id]
+        const { plate_number, driver_name, capacity, status } = data;
+        await db.query(
+            'UPDATE vehicles SET plate_number = ?, driver_name = ?, capacity = ?, status = ? WHERE id = ?',
+            [plate_number, driver_name, capacity, status, id]
         );
-        return result.affectedRows > 0;
     }
 
-    static async delete(id) {
-        const [result] = await db.query('DELETE FROM vehicles WHERE id = ?', [id]);
-        return result.affectedRows > 0;
+    static async remove(id) {
+        await db.query('DELETE FROM vehicles WHERE id = ?', [id]);
     }
 }
 
