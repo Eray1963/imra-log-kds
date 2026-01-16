@@ -38,6 +38,30 @@ class Vehicle {
         const [result] = await db.query('DELETE FROM vehicles WHERE id = ?', [id]);
         return result.affectedRows > 0;
     }
+
+    // LOAD STOCK: Araç kapasitesi kontrolü ile stok yükle
+    static async loadStock(vehicleId, stockId, quantity) {
+        const vehicle = await this.findById(vehicleId);
+        if (!vehicle) throw new Error('Araç bulunamadı');
+
+        const stock = await db.query('SELECT * FROM stocks WHERE id = ?', [stockId]);
+        if (!stock[0][0]) throw new Error('Stok bulunamadı');
+
+        const stockItem = stock[0][0];
+        const loadWeight = quantity * stockItem.weight;
+
+        if (loadWeight > vehicle.capacity) {
+            throw new Error('Araç kapasitesi yetersiz');
+        }
+
+        // Stok azalt
+        const newQuantity = stockItem.quantity - quantity;
+        if (newQuantity < 0) throw new Error('Yetersiz stok miktarı');
+
+        await db.query('UPDATE stocks SET quantity = ? WHERE id = ?', [newQuantity, stockId]);
+
+        return { message: 'Stok başarıyla yüklendi' };
+    }
 }
 
 module.exports = Vehicle;

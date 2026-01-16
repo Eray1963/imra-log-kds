@@ -74,6 +74,44 @@ class StockController {
             res.status(500).json({ error: 'Sunucu hatası' });
         }
     }
+
+    // PUT /api/stocks/:id/reduce
+    async reduceStock(req, res) {
+        try {
+            const { id } = req.params;
+            const { quantity } = req.body;
+
+            const existingStock = await Stock.findById(id);
+            if (!existingStock) {
+                return res.status(404).json({ error: 'Stok bulunamadı' });
+            }
+
+            // İş kuralı: Stok miktarı 0 ise çıkış işlemi engellenir
+            if (existingStock.quantity <= 0) {
+                return res.status(400).json({ error: 'Stok miktarı 0 olduğundan çıkış işlemi yapılamaz' });
+            }
+
+            // İş kuralı: Stok miktarı 10'un altına düşerse kritik seviye uyarısı
+            const newQuantity = existingStock.quantity - quantity;
+            if (newQuantity < 0) {
+                return res.status(400).json({ error: 'Yetersiz stok miktarı' });
+            }
+
+            let message = 'Stok miktarı azaltıldı';
+            if (newQuantity < 10) {
+                message += ' - Kritik seviye uyarısı: Stok miktarı 10\'un altına düştü';
+            }
+
+            const success = await Stock.update(id, { ...existingStock, quantity: newQuantity });
+            if (!success) {
+                return res.status(500).json({ error: 'Stok güncellenemedi' });
+            }
+
+            res.status(200).json({ message });
+        } catch (error) {
+            res.status(500).json({ error: 'Sunucu hatası' });
+        }
+    }
 }
 
 module.exports = new StockController();

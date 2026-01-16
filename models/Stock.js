@@ -3,10 +3,10 @@ const db = require('../config/db');
 class Stock {
     // CREATE: Yeni stok ekle
     static async create(stockData) {
-        const { name, quantity, minimumLevel } = stockData;
+        const { name, quantity, minimumLevel, weight } = stockData;
         const [result] = await db.query(
-            'INSERT INTO stocks (name, quantity, minimumLevel) VALUES (?, ?, ?)',
-            [name, quantity, minimumLevel]
+            'INSERT INTO stocks (name, quantity, minimumLevel, weight) VALUES (?, ?, ?, ?)',
+            [name, quantity, minimumLevel, weight]
         );
         return result.insertId;
     }
@@ -25,10 +25,10 @@ class Stock {
 
     // UPDATE: Stok güncelle
     static async update(id, stockData) {
-        const { name, quantity, minimumLevel } = stockData;
+        const { name, quantity, minimumLevel, weight } = stockData;
         const [result] = await db.query(
-            'UPDATE stocks SET name = ?, quantity = ?, minimumLevel = ? WHERE id = ?',
-            [name, quantity, minimumLevel, id]
+            'UPDATE stocks SET name = ?, quantity = ?, minimumLevel = ?, weight = ? WHERE id = ?',
+            [name, quantity, minimumLevel, weight, id]
         );
         return result.affectedRows > 0;
     }

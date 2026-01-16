@@ -1,0 +1,140 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marmara",
+        "name_tr": "Marmara",
+        "code": "marmara"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [26.0, 41.0],
+          [30.5, 41.0],
+          [30.5, 40.0],
+          [28.0, 40.0],
+          [27.0, 40.5],
+          [26.0, 41.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ege",
+        "name_tr": "Ege",
+        "code": "ege"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [26.0, 40.0],
+          [30.0, 40.0],
+          [30.0, 37.5],
+          [26.5, 37.5],
+          [26.0, 38.5],
+          [26.0, 40.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Akdeniz",
+        "name_tr": "Akdeniz",
+        "code": "akdeniz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, 37.5],
+          [36.5, 37.5],
+          [36.5, 35.5],
+          [30.0, 35.5],
+          [30.0, 37.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "İç Anadolu",
+        "name_tr": "İç Anadolu",
+        "code": "ic-anadolu"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, 40.0],
+          [35.0, 40.0],
+          [35.0, 38.0],
+          [33.0, 37.5],
+          [30.0, 37.5],
+          [30.0, 40.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karadeniz",
+        "name_tr": "Karadeniz",
+        "code": "karadeniz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [26.0, 42.0],
+          [42.0, 42.0],
+          [42.0, 40.0],
+          [35.0, 40.0],
+          [30.5, 40.0],
+          [30.5, 41.0],
+          [28.0, 41.5],
+          [26.0, 42.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Doğu Anadolu",
+        "name_tr": "Doğu Anadolu",
+        "code": "dogu-anadolu"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [35.0, 42.0],
+          [45.0, 42.0],
+          [45.0, 38.0],
+          [40.0, 38.0],
+          [36.5, 37.5],
+          [35.0, 38.0],
+          [35.0, 42.0]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Güneydoğu Anadolu",
+        "name_tr": "Güneydoğu Anadolu",
+        "code": "guneydogu-anadolu"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [35.0, 38.0],
+          [42.5, 38.0],
+          [42.5, 36.0],
+          [36.5, 35.5],
+          [36.5, 37.5],
+          [35.0, 38.0]
+        ]]
+      }
+    }
+  ]
+}

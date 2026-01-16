@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS stocks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     quantity INT NOT NULL,
-    minimumLevel INT NOT NULL
+    minimumLevel INT NOT NULL,
+    weight INT NOT NULL
 );
 
 -- Warehouses table

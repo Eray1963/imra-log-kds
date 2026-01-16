@@ -74,6 +74,25 @@ class VehicleController {
             res.status(500).json({ error: 'Sunucu hatası' });
         }
     }
+
+    // POST /api/vehicles/:id/load-stock
+    async loadStock(req, res) {
+        try {
+            const { id } = req.params;
+            const { stockId, quantity } = req.body;
+
+            const result = await Vehicle.loadStock(id, stockId, quantity);
+            res.status(200).json(result);
+        } catch (error) {
+            if (error.message === 'Araç bulunamadı' || error.message === 'Stok bulunamadı') {
+                return res.status(404).json({ error: error.message });
+            }
+            if (error.message === 'Araç kapasitesi yetersiz' || error.message === 'Yetersiz stok miktarı') {
+                return res.status(400).json({ error: error.message });
+            }
+            res.status(500).json({ error: 'Sunucu hatası' });
+        }
+    }
 }
 
 module.exports = new VehicleController();
