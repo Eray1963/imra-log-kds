@@ -1,26 +1,16 @@
 # IMRA Lojistik Karar Destek Sistemi (KDS)
 
-## Projenin Amacı ve Kısa Tanımı
-
-Bu proje, Sunucu Tabanlı Programlama dersi ödevi için geliştirilen bir lojistik karar destek sistemi'nin backend kısmıdır. Express.js ve MySQL kullanarak MVC mimarisi ile araçlar, stoklar ve depoların yönetimini sağlar. Sistem, filo yönetimi, yedek parça stok takibi ve depo kapasite kararlarını destekler.
-
-## Senaryo Tanımı
-
-### İş Kuralları (Business Rules)
-
-1. **Araç Kapasitesi Kontrolü**: Bir araca kapasitesinden fazla stok yüklenemez. Araç kapasitesi (Vehicle.capacity) ile yüklenen ürünün toplam ağırlığı (quantity * stock.weight) karşılaştırılır. Eğer kapasite aşılırsa yükleme işlemi engellenir.
-
-2. **Stok Kritik Seviye Uyarısı**: Stok miktarı 10'un altına düşen bir ürün için "kritik seviye" uyarısı verilir. Stok miktarı 0 ise çıkış işlemi tamamen engellenir.
+Bu proje, İMRA Lojistik finans departmanında filo (çekici + dorse), yedek parça stokları ve depo kapasite kararlarını desteklemek amacıyla geliştirilen bir Karar Destek Sistemi’nin sunucu tarafını temsil etmektedir.
 
 ## Özellikler
 
-- MVC mimarisi (Models, Views, Controllers)
-- RESTful API endpoints
-- MySQL veritabanı entegrasyonu
+- MVC mimarisi
+- RESTful API
+- CRUD işlemleri
 - İş kuralları entegrasyonu
 - Hata yönetimi ve response standartizasyonu
 
-## Kurulum Adımları
+## Kurulum
 
 1. **Bağımlılıkları yükleyin**:
    ```
@@ -171,7 +161,7 @@ IMRA Lojistik firması filo yönetimi, yedek parça stokları ve depo kapasite k
 
 ## ER Diyagramı
 
-[ER Diyagramı](er_diagram.png) (PNG/PDF olarak ekleyin)
+
 
 ## MVC Yapısı
 
