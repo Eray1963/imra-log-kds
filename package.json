@@ -1,7 +1,7 @@
 {
-  "name": "sunucu2026",
+  "name": "imra-kds",
   "version": "1.0.0",
-  "description": "Sunucu Tabanlı Programlama Dersi 2026",
+  "description": "imra-kds",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
